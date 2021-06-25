@@ -41,8 +41,8 @@ SOFTWARE.
 
   <!-- ios -->
   <platform name="ios">
-    <preference name="IOS_URL_SCHEME" />
-    <preference name="IOS_BUNDLE_IDENTIFIER" />
+    <!-- <preference name="IOS_URL_SCHEME" /> -->
+    <!-- <preference name="IOS_BUNDLE_IDENTIFIER" /> -->
 
     <js-module src="www/openwith.js" name="openwith">
       <clobbers target="cordova.openwith" />
@@ -69,7 +69,7 @@ SOFTWARE.
           <string>$(CFBundleIdentifier).shareextension</string>
           <key>CFBundleURLSchemes</key>
           <array>
-            <string>$IOS_URL_SCHEME</string>
+            <string>openwithshareextension</string>
           </array>
         </dict>
       </array>
@@ -92,6 +92,7 @@ SOFTWARE.
     <!-- Cordova hooks -->
     <hook type="before_plugin_install" src="hooks/npmInstall.js" />
     <hook type="after_plugin_install" src="hooks/iosCopyShareExtension.js" />
+    <hook type="after_platform_add" src="hooks/iosCopyShareExtension.js" />
     <hook type="after_plugin_add" src="hooks/iosAddTarget.js" />
     <hook type="after_prepare" src="hooks/iosAddTarget.js" />
 
@@ -125,11 +126,13 @@ SOFTWARE.
       <feature name="OpenWithPlugin">
         <param name="android-package" value="com.missiveapp.openwith.OpenWithPlugin"/>
       </feature>
+      <preference name="AndroidLaunchMode" value="singleTask"/>
     </config-file>
 
     <!-- cordova plugin src files -->
     <source-file src="src/android/com/missiveapp/openwith/OpenWithPlugin.java" target-dir="src/com/missiveapp/openwith" />
     <source-file src="src/android/com/missiveapp/openwith/PluginResultSender.java" target-dir="src/com/missiveapp/openwith" />
     <source-file src="src/android/com/missiveapp/openwith/Serializer.java" target-dir="src/com/missiveapp/openwith" />
+    <source-file src="src/android/com/missiveapp/openwith/ByteStreams.java" target-dir="src/com/missiveapp/openwith" />
   </platform>
 </plugin>
